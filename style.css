@@ -1,6 +1,6 @@
 body {
     font-family: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
-    background: linear-gradient(135deg, #00364f 0%, #0a6c8e 100%);
+    background: linear-gradient(120deg, #00364f 0%, #0a6c8e 60%, #1ed2ff 100%);
     margin: 0;
     padding: 0;
     text-align: center;
@@ -8,55 +8,76 @@ body {
 }
 .cover {
     width: 100%;
-    height: 370px; /* يمكنك التعديل حسب رغبتك */
+    height: 670px;
     background: url('cover.jpg') center/cover no-repeat;
     position: relative;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    border: 6px solid #fff;         /* إطار أبيض */
-    border-radius: 28px;            /* زوايا دائرية */
-    box-sizing: border-box;         /* حتى لا يتغير حجم الغلاف */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    border: 8px solid #fff;
+    border-radius: 36px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 90px;
+}
+.cover-overlay {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45) 60%, rgba(0,54,79,0.15) 100%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
 }
 .profile-pic {
-    width: 160px;
-    height: 160px;
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
-    border: 6px solid #fff;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    border: 7px solid #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     position: absolute;
     left: 50%;
-    bottom: -80px;
+    top: 570px;
     transform: translateX(-50%);
     background: url('Myphoto.jpg') center/cover no-repeat;
     background-color: #eee;
+    z-index: 2;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.profile-pic:hover {
+    transform: translateX(-50%) scale(1.06) rotate(-2deg);
+    box-shadow: 0 12px 40px rgba(30,210,255,0.18);
 }
 .container {
-    margin-top: 110px;
-    background: rgba(255,255,255,0.92);
-    border-radius: 18px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    margin-top: 30px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 22px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     display: inline-block;
-    padding: 40px 32px 32px 32px;
+    padding: 48px 36px 36px 36px;
     min-width: 320px;
-    max-width: 95vw;
+    max-width: 98vw;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s, transform 1s, padding 0.3s;
 }
 h1 {
-    margin: 18px 0 8px 0;
-    font-size: 2.2em;
+    margin: 22px 0 10px 0;
+    font-size: 2.4em;
     color: #00364f;
     letter-spacing: 1px;
     font-family: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
+    text-shadow: 0 2px 8px #eaf6fa, 0 4px 24px #1ed2ff33;
 }
 p {
     color: #444;
-    font-size: 1.1em;
-    margin-bottom: 28px;
+    font-size: 1.15em;
+    margin-bottom: 32px;
+    line-height: 1.7;
 }
 .social-links {
-    margin: 28px 0 0 0;
+    margin: 32px 0 0 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
+    gap: 18px;
 }
 .social-links a {
     display: flex;
@@ -64,31 +85,45 @@ p {
     justify-content: center;
     text-decoration: none;
     color: #0a6c8e;
-    font-size: 2.1em;
+    font-size: 2.2em;
     background: #eaf6fa;
     border-radius: 50%;
-    width: 54px;
-    height: 54px;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    width: 60px;
+    height: 60px;
+    transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+    border: 2px solid #eaf6fa;
+    will-change: transform;
 }
-.social-links a:hover {
+.social-links a:hover,
+.social-links a:focus {
     background: #0a6c8e;
     color: #fff;
-    transform: translateY(-6px) scale(1.08);
+    transform: translateY(-8px) scale(1.10);
+    box-shadow: 0 4px 18px rgba(10,108,142,0.18);
+    border-color: #0a6c8e;
+}
+.social-links a:active {
+    background: #1ed2ff;
+    color: #fff;
+    transform: scale(0.96);
+    border-color: #1ed2ff;
 }
 /* Footer styles */
 footer {
-    margin-top: 48px;
-    padding: 32px 0 18px 0;
+    margin-top: 56px;
+    padding: 36px 0 20px 0;
     background: linear-gradient(90deg, #00364f 60%, #0a6c8e 100%);
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1.15em;
     letter-spacing: 1px;
-    border-top-left-radius: 32px;
-    border-top-right-radius: 32px;
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
     box-shadow: 0 -2px 16px rgba(0,0,0,0.10);
     position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s 0.2s, transform 1s 0.2s;
 }
 footer .footer-heart {
     color: #ff4b6e;
@@ -103,51 +138,58 @@ footer .footer-heart {
 @media (max-width: 900px) {
     .container {
         min-width: 220px;
-        padding: 32px 8vw 28px 8vw;
+        padding: 32px 6vw 28px 6vw;
     }
     .cover {
-        height: 180px;
+        height: 260px;
+        border-radius: 22px;
+        margin-bottom: 60px;
     }
     .profile-pic {
         width: 110px;
         height: 110px;
-        bottom: -55px;
+        top: 170px;
     }
     footer {
         font-size: 1em;
         padding: 24px 0 12px 0;
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
     }
 }
 @media (max-width: 600px) {
     .container {
-        padding: 18px 2vw 18px 2vw;
+        padding: 14px 2vw 14px 2vw;
         min-width: unset;
-        margin-top: 70px;
+        margin-top: 120px;
     }
     .cover {
-        height: 110px;
+        height: 120px;
+        border-radius: 10px;
+        border-width: 3px;
+        margin-bottom: 40px;
     }
     .profile-pic {
-        width: 80px;
-        height: 80px;
-        bottom: -40px;
-        border-width: 4px;
+        width: 60px;
+        height: 60px;
+        top: 60px;
+        border-width: 2px;
     }
     h1 {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     p {
-        font-size: 1em;
+        font-size: 0.98em;
     }
     .social-links a {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3em;
+        width: 36px;
+        height: 36px;
+        font-size: 1.2em;
     }
     footer {
         font-size: 0.95em;
-        padding: 16px 0 8px 0;
-        border-top-left-radius: 18px;
-        border-top-right-radius: 18px;
+        padding: 12px 0 6px 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 }

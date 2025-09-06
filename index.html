@@ -13,11 +13,12 @@
 </head>
 <body>
     <div class="cover">
-        <div class="profile-pic"></div>
+        <div class="cover-overlay"></div>
     </div>
-    <div class="container">
-        <h1>خُــزيمــة</h1>
-        <p>مبرمج , لاعب كرة قدم.</p>
+    <div class="profile-pic"></div>
+    <div class="container fade-in">
+        <h1>خُزيمة</h1>
+        <p>Football Player , Programmer</p>
         <div class="social-links">
             <a href="https://facebook.com/khzymh.khlf.allh" target="_blank" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
             <a href="https://instagram.com/khozima__.7" target="_blank" title="انستغرام"><i class="fab fa-instagram"></i></a>
@@ -28,8 +29,17 @@
             <a href="https://www.tiktok.com/@khozima__.7" target="_blank" title="تيكتوك"><i class="fab fa-tiktok"></i></a>
         </div>
     </div>
-    <footer>
-        <span> الحمدُللَّه <span class="footer-heart"></span> @KHOZIMA </span>
+    <footer class="fade-in">
+        <span> اللّهم أعزّ الإسلام و المُسلمين <span class="footer-heart"></span> </span>
     </footer>
+    <script>
+        // حركة Fade In عند تحميل الصفحة
+        window.onload = function() {
+            document.querySelectorAll('.fade-in').forEach(function(el) {
+                el.style.opacity = 1;
+                el.style.transform = 'translateY(0)';
+            });
+        };
+    </script>
 </body>
 </html>
