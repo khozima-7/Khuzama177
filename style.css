@@ -112,25 +112,40 @@ p {
 /* Footer styles */
 footer {
     margin-top: 56px;
-    padding: 36px 0 20px 0;
-    background: linear-gradient(90deg, #00364f 60%, #0a6c8e 100%);
+    padding: 24px 0 12px 0;
+    background: linear-gradient(90deg, #002233 0%, #005377 100%);
     color: #fff;
-    font-size: 1.15em;
+    font-size: 1.18em;
     letter-spacing: 1px;
-    border-top-left-radius: 36px;
-    border-top-right-radius: 36px;
-    box-shadow: 0 -2px 16px rgba(0,0,0,0.10);
-    position: relative;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 100;
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 1s 0.2s, transform 1s 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 footer .footer-heart {
     color: #ff4b6e;
     margin: 0 4px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     vertical-align: middle;
     animation: pulse 1.2s infinite alternate;
+    text-shadow: 0 2px 8px #fff2;
+}
+footer span {
+    text-shadow: 0 2px 8px #0006;
+    font-weight: bold;
+    font-size: 1.1em;
+    letter-spacing: 1.5px;
 }
 @keyframes pulse {
     to { transform: scale(1.2); }
