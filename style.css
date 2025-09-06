@@ -1,0 +1,153 @@
+body {
+    font-family: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #00364f 0%, #0a6c8e 100%);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+}
+.cover {
+    width: 100%;
+    height: 370px; /* يمكنك التعديل حسب رغبتك */
+    background: url('cover.jpg') center/cover no-repeat;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    border: 6px solid #fff;         /* إطار أبيض */
+    border-radius: 28px;            /* زوايا دائرية */
+    box-sizing: border-box;         /* حتى لا يتغير حجم الغلاف */
+}
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    position: absolute;
+    left: 50%;
+    bottom: -80px;
+    transform: translateX(-50%);
+    background: url('Myphoto.jpg') center/cover no-repeat;
+    background-color: #eee;
+}
+.container {
+    margin-top: 110px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    display: inline-block;
+    padding: 40px 32px 32px 32px;
+    min-width: 320px;
+    max-width: 95vw;
+}
+h1 {
+    margin: 18px 0 8px 0;
+    font-size: 2.2em;
+    color: #00364f;
+    letter-spacing: 1px;
+    font-family: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
+}
+p {
+    color: #444;
+    font-size: 1.1em;
+    margin-bottom: 28px;
+}
+.social-links {
+    margin: 28px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #0a6c8e;
+    font-size: 2.1em;
+    background: #eaf6fa;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.social-links a:hover {
+    background: #0a6c8e;
+    color: #fff;
+    transform: translateY(-6px) scale(1.08);
+}
+/* Footer styles */
+footer {
+    margin-top: 48px;
+    padding: 32px 0 18px 0;
+    background: linear-gradient(90deg, #00364f 60%, #0a6c8e 100%);
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.10);
+    position: relative;
+}
+footer .footer-heart {
+    color: #ff4b6e;
+    margin: 0 4px;
+    font-size: 1.2em;
+    vertical-align: middle;
+    animation: pulse 1.2s infinite alternate;
+}
+@keyframes pulse {
+    to { transform: scale(1.2); }
+}
+@media (max-width: 900px) {
+    .container {
+        min-width: 220px;
+        padding: 32px 8vw 28px 8vw;
+    }
+    .cover {
+        height: 180px;
+    }
+    .profile-pic {
+        width: 110px;
+        height: 110px;
+        bottom: -55px;
+    }
+    footer {
+        font-size: 1em;
+        padding: 24px 0 12px 0;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        padding: 18px 2vw 18px 2vw;
+        min-width: unset;
+        margin-top: 70px;
+    }
+    .cover {
+        height: 110px;
+    }
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+        bottom: -40px;
+        border-width: 4px;
+    }
+    h1 {
+        font-size: 1.3em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3em;
+    }
+    footer {
+        font-size: 0.95em;
+        padding: 16px 0 8px 0;
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+    }
+}
