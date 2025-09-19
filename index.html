@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>صفحتي الشخصية - خُــزيمــة</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="خُزيمة - صفحتي الشخصية: لاعب كرة قدم ومبرمج. تابعني على مواقع التواصل الاجتماعي وتواصل معي مباشرة.">
+    <meta property="og:title" content="صفحتي الشخصية - خُــزيمــة">
+    <meta property="og:description" content="خُزيمة - لاعب كرة قدم ومبرمج. تابعني على مواقع التواصل الاجتماعي وتواصل معي مباشرة.">
+    <meta property="og:image" content="cover.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- خط عربي أنيق -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;400&family=Tajawal:wght@700;400&display=swap" rel="stylesheet">
     <!-- أيقونات Font Awesome -->
@@ -28,10 +34,45 @@
             <a href="https://t.me/khozima" target="_blank" title="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://www.tiktok.com/@khozima__.7" target="_blank" title="تيكتوك"><i class="fab fa-tiktok"></i></a>
         </div>
+        <!-- قسم المهارات -->
+        <div class="skills-section fade-in reveal">
+            <h2 class="skills-title">مهاراتي</h2>
+            <div class="skill-bar">
+                <span>HTML</span>
+                <div class="bar-bg"><div class="bar-fill" data-width="95%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <span>CSS</span>
+                <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <span>JavaScript</span>
+                <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <span>Python</span>
+                <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
+            </div>
+        </div>
     </div>
     <footer class="fade-in">
-        <span> اللّهم أعزّ الإسلام و المُسلمين <span class="footer-heart"></span> </span>
+        <div class="footer-content">
+            <span>اللّهم أعزّ الإسلام و المُسلمين <span class="footer-heart"></span></span>
+            <div class="footer-links">
+                <a href="#" title="الرئيسية"><i class="fas fa-home"></i></a>
+                <a href="#" title="مهاراتي"><i class="fas fa-chart-bar"></i></a>
+                <a href="#" title="تواصل"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </footer>
+
+
+    <!-- زر الوضع الليلي/النهاري -->
+    <button id="toggleMode" title="تغيير الوضع" style="position:fixed;bottom:80px;left:20px;z-index:200;background:#fff;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px #0002;cursor:pointer;font-size:1.5em;transition:background 0.3s;">
+        <span class="toggle-icon">
+            <i class="fas fa-moon"></i>
+        </span>
+    </button>
     <script>
         // حركة Fade In عند تحميل الصفحة
         window.onload = function() {
@@ -39,7 +80,60 @@
                 el.style.opacity = 1;
                 el.style.transform = 'translateY(0)';
             });
+            // كشف العناصر عند التمرير
+            function revealOnScroll() {
+                document.querySelectorAll('.reveal').forEach(function(el) {
+                    var rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 60) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // تحريك أشرطة المهارات عند الظهور
+            function animateSkills() {
+                document.querySelectorAll('.bar-fill').forEach(function(bar) {
+                    const parent = bar.closest('.reveal');
+                    if (parent && parent.classList.contains('visible')) {
+                        bar.style.width = bar.getAttribute('data-width');
+                    } else {
+                        bar.style.width = '0';
+                    }
+                });
+            }
+            window.addEventListener('scroll', animateSkills);
+            animateSkills();
         };
+
+        // زر الوضع الليلي/النهاري
+
+        // زر الوضع الليلي/النهاري الاحترافي
+        const toggleBtn = document.getElementById('toggleMode');
+        const iconSpan = toggleBtn.querySelector('.toggle-icon');
+        function setMode(dark) {
+            if (dark) {
+                document.body.classList.add('dark-mode');
+                iconSpan.innerHTML = '<i class="fas fa-sun"></i>';
+                toggleBtn.style.background = 'linear-gradient(120deg,#23272f,#18191a)';
+            } else {
+                document.body.classList.remove('dark-mode');
+                iconSpan.innerHTML = '<i class="fas fa-moon"></i>';
+                toggleBtn.style.background = '#fff';
+            }
+        }
+        let isDark = localStorage.getItem('darkMode') === 'true';
+        setMode(isDark);
+        toggleBtn.onclick = function() {
+            isDark = !isDark;
+            setMode(isDark);
+            localStorage.setItem('darkMode', isDark);
+            toggleBtn.classList.add('toggle-animate');
+            setTimeout(()=>toggleBtn.classList.remove('toggle-animate'),400);
+        };
+
+
     </script>
 </body>
 </html>
