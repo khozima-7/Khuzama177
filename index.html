@@ -75,7 +75,7 @@
     </button>
     <script>
         // حركة Fade In عند تحميل الصفحة
-        window.onload = function() {
+        function fadeAndSkillsInit() {
             document.querySelectorAll('.fade-in').forEach(function(el) {
                 el.style.opacity = 1;
                 el.style.transform = 'translateY(0)';
@@ -105,7 +105,13 @@
             }
             window.addEventListener('scroll', animateSkills);
             animateSkills();
-        };
+        }
+        // تأكد من تفعيل الوضع الداكن مباشرة بعد تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            let isDark = localStorage.getItem('darkMode') === 'true';
+            setMode(isDark);
+            fadeAndSkillsInit();
+        });
 
         // زر الوضع الليلي/النهاري
 
@@ -123,10 +129,8 @@
                 toggleBtn.style.background = '#fff';
             }
         }
-        let isDark = localStorage.getItem('darkMode') === 'true';
-        setMode(isDark);
         toggleBtn.onclick = function() {
-            isDark = !isDark;
+            let isDark = document.body.classList.contains('dark-mode') ? false : true;
             setMode(isDark);
             localStorage.setItem('darkMode', isDark);
             toggleBtn.classList.add('toggle-animate');
