@@ -1,143 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>صفحتي الشخصية - خُــزيمــة</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="خُزيمة - صفحتي الشخصية: لاعب كرة قدم ومبرمج. تابعني على مواقع التواصل الاجتماعي وتواصل معي مباشرة.">
-    <meta property="og:title" content="صفحتي الشخصية - خُــزيمــة">
-    <meta property="og:description" content="خُزيمة - لاعب كرة قدم ومبرمج. تابعني على مواقع التواصل الاجتماعي وتواصل معي مباشرة.">
-    <meta property="og:image" content="cover.jpg">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- خط عربي أنيق -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;400&family=Tajawal:wght@700;400&display=swap" rel="stylesheet">
-    <!-- أيقونات Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- ربط ملف CSS خارجي -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>خُــزيمــة — صفحة شخصية</title>
+  <meta name="description" content="خُزيمة — لاعب كرة قدم ومبرمج. تعرّف على مهاراتي وتواصل معي.">
+  <meta property="og:title" content="خُــزيمــة — صفحة شخصية">
+  <meta property="og:description" content="خُزيمة — لاعب كرة قدم ومبرمج. تعرّف على مهاراتي وتواصل معي.">
+  <meta property="og:image" content="cover.jpg">
+  <meta name="theme-color" content="#1ed2ff">
+
+  <!-- Performance / Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;400&family=Tajawal:wght@700;400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="" crossorigin="anonymous"/>
+
+  <!-- main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- prefer-dark by system; JS will override if user set preference -->
+  <script>
+    if (localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
 </head>
 <body>
-    <div class="cover">
-        <div class="cover-overlay"></div>
+  <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+
+  <header class="site-header" role="banner">
+    <div class="cover-wrapper">
+      <!-- استخدمت <img> لتفعيل lazy-loading و تحسين السيو -->
+      <img src="cover.jpg" alt="غلاف - منظر" class="cover-img" loading="lazy">
+      <div class="cover-overlay" aria-hidden="true"></div>
     </div>
-    <div class="profile-pic"></div>
-    <div class="container fade-in">
-        <h1>خُزيمة</h1>
-        <p>Football Player , Programmer</p>
-        <div class="social-links">
-            <a href="https://facebook.com/khzymh.khlf.allh" target="_blank" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/khozima__.7" target="_blank" title="انستغرام"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/khozima_7" target="_blank" title="تويتر"><i class="fab fa-twitter"></i></a>
-            <a href="https://threads.net/@khozima__7" target="_blank" title="ثريد"><i class="fab fa-threads"></i></a>
-            <a href="https://snapchat.com/add/khozima_7" target="_blank" title="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
-            <a href="https://t.me/khozima" target="_blank" title="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://www.tiktok.com/@khozima__.7" target="_blank" title="تيكتوك"><i class="fab fa-tiktok"></i></a>
+
+    <div class="profile-row container">
+      <img src="Myphoto.jpg" alt="صورة خزيمة" class="profile-pic" loading="lazy">
+      <div class="intro">
+        <h1 class="name">خُزيمــة</h1>
+        <p class="tagline">لاعب كرة قدم • مبرمج</p>
+        <div class="action-row">
+          <a class="btn primary" href="#contact" title="تواصل معي">تواصل الآن</a>
+          <button id="toggleTheme" class="btn ghost" aria-pressed="false" title="تغيير الوضع">
+            <i class="fas fa-moon"></i><span class="visually-hidden">تبديل الوضع</span>
+          </button>
         </div>
-        <!-- قسم المهارات -->
-        <div class="skills-section fade-in reveal">
-            <h2 class="skills-title">مهاراتي</h2>
-            <div class="skill-bar">
-                <span>HTML</span>
-                <div class="bar-bg"><div class="bar-fill" data-width="95%"></div></div>
-            </div>
-            <div class="skill-bar">
-                <span>CSS</span>
-                <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
-            </div>
-            <div class="skill-bar">
-                <span>JavaScript</span>
-                <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
-            </div>
-            <div class="skill-bar">
-                <span>Python</span>
-                <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
-            </div>
+        <div class="social-links" aria-label="روابط التواصل الاجتماعي">
+          <a href="https://facebook.com/khzymh.khlf.allh" target="_blank" rel="noopener" title="فيسبوك"><i class="fab fa-facebook-f" aria-hidden="true"></i><span class="sr-only">فيسبوك</span></a>
+          <a href="https://instagram.com/khozima__.7" target="_blank" rel="noopener" title="انستغرام"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">انستغرام</span></a>
+          <a href="https://twitter.com/khozima_7" target="_blank" rel="noopener" title="تويتر"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">تويتر</span></a>
+          <a href="https://t.me/khozima" target="_blank" rel="noopener" title="تيليجرام"><i class="fab fa-telegram-plane" aria-hidden="true"></i><span class="sr-only">تيليجرام</span></a>
+          <a href="https://www.tiktok.com/@khozima__.7" target="_blank" rel="noopener" title="تيكتوك"><i class="fab fa-tiktok" aria-hidden="true"></i><span class="sr-only">تيكتوك</span></a>
         </div>
+      </div>
     </div>
-    <footer class="fade-in">
-        <div class="footer-content">
-            <span>اللّهم أعزّ الإسلام و المُسلمين <span class="footer-heart"></span></span>
-            <div class="footer-links">
-                <a href="#" title="الرئيسية"><i class="fas fa-home"></i></a>
-                <a href="#" title="مهاراتي"><i class="fas fa-chart-bar"></i></a>
-                <a href="#" title="تواصل"><i class="fas fa-envelope"></i></a>
-            </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <!-- نبذة عني -->
+    <section id="about" class="card reveal">
+      <h2 class="section-title">نبذة عني</h2>
+      <p>
+        أنا خُزيمة — لاعب كرة قدم هاوٍ ومطور ويب. أحب تصميم واجهات جذابة وتجربة المستخدم البسيطة. أعمل على مشاريع صغيرة ومتوسطة، وأتعلم التقنيات الحديثة بشكل مستمر.
+      </p>
+    </section>
+
+    <!-- المهارات -->
+    <section id="skills" class="card reveal">
+      <h2 class="section-title">مهاراتي</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <div class="skill-left"><strong>HTML</strong><span class="skill-percent">95%</span></div>
+          <div class="progress" aria-hidden="true"><div class="progress-fill" data-progress="95"></div></div>
         </div>
-    </footer>
+        <div class="skill">
+          <div class="skill-left"><strong>CSS</strong><span class="skill-percent">90%</span></div>
+          <div class="progress" aria-hidden="true"><div class="progress-fill" data-progress="90"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-left"><strong>JavaScript</strong><span class="skill-percent">80%</span></div>
+          <div class="progress" aria-hidden="true"><div class="progress-fill" data-progress="80"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-left"><strong>Python</strong><span class="skill-percent">75%</span></div>
+          <div class="progress" aria-hidden="true"><div class="progress-fill" data-progress="75"></div></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- نموذج التواصل -->
+    <section id="contact" class="card reveal">
+      <h2 class="section-title">تواصل معي</h2>
+      <form id="contactForm" class="contact-form" action="#" novalidate>
+        <label for="name">الاسم</label>
+        <input id="name" name="name" type="text" required placeholder="اسمك الكامل" />
 
-    <!-- زر الوضع الليلي/النهاري -->
-    <button id="toggleMode" title="تغيير الوضع" style="position:fixed;bottom:80px;left:20px;z-index:200;background:#fff;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px #0002;cursor:pointer;font-size:1.5em;transition:background 0.3s;">
-        <span class="toggle-icon">
-            <i class="fas fa-moon"></i>
-        </span>
-    </button>
-    <script>
-        // حركة Fade In عند تحميل الصفحة
-        function fadeAndSkillsInit() {
-            document.querySelectorAll('.fade-in').forEach(function(el) {
-                el.style.opacity = 1;
-                el.style.transform = 'translateY(0)';
-            });
-            // كشف العناصر عند التمرير
-            function revealOnScroll() {
-                document.querySelectorAll('.reveal').forEach(function(el) {
-                    var rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 60) {
-                        el.classList.add('visible');
-                    }
-                });
-            }
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
+        <label for="email">البريد الإلكتروني</label>
+        <input id="email" name="email" type="email" required placeholder="email@example.com" />
 
-            // تحريك أشرطة المهارات عند الظهور
-            function animateSkills() {
-                document.querySelectorAll('.bar-fill').forEach(function(bar) {
-                    const parent = bar.closest('.reveal');
-                    if (parent && parent.classList.contains('visible')) {
-                        bar.style.width = bar.getAttribute('data-width');
-                    } else {
-                        bar.style.width = '0';
-                    }
-                });
-            }
-            window.addEventListener('scroll', animateSkills);
-            animateSkills();
-        }
-        // تأكد من تفعيل الوضع الداكن مباشرة بعد تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            let isDark = localStorage.getItem('darkMode') === 'true';
-            setMode(isDark);
-            fadeAndSkillsInit();
-        });
+        <label for="message">الرسالة</label>
+        <textarea id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
 
-        // زر الوضع الليلي/النهاري
+        <div class="form-actions">
+          <button type="submit" class="btn primary">أرسل عبر الإيميل</button>
+          <button type="reset" class="btn ghost">مسح</button>
+        </div>
+        <p id="formNote" class="muted small">النموذج يفتح تطبيق البريد لإرسال الرسالة (mailto). إذا رغبت بخدمة خلفية، يمكنني إضافة تكامل مع خدمة مثل Formspree أو Netlify Forms.</p>
+      </form>
+    </section>
+  </main>
 
-        // زر الوضع الليلي/النهاري الاحترافي
-        const toggleBtn = document.getElementById('toggleMode');
-        const iconSpan = toggleBtn.querySelector('.toggle-icon');
-        function setMode(dark) {
-            if (dark) {
-                document.body.classList.add('dark-mode');
-                iconSpan.innerHTML = '<i class="fas fa-sun"></i>';
-                toggleBtn.style.background = 'linear-gradient(120deg,#23272f,#18191a)';
-            } else {
-                document.body.classList.remove('dark-mode');
-                iconSpan.innerHTML = '<i class="fas fa-moon"></i>';
-                toggleBtn.style.background = '#fff';
-            }
-        }
-        toggleBtn.onclick = function() {
-            let isDark = document.body.classList.contains('dark-mode') ? false : true;
-            setMode(isDark);
-            localStorage.setItem('darkMode', isDark);
-            toggleBtn.classList.add('toggle-animate');
-            setTimeout(()=>toggleBtn.classList.remove('toggle-animate'),400);
-        };
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <p>اللّهم أعزّ الإسلام والمُسلمين · © <span id="year"></span> خُزيمــة</p>
+      </div>
+      <div class="footer-right footer-links">
+        <a href="#about" title="نبذة عني"><i class="fas fa-user"></i></a>
+        <a href="#skills" title="مهاراتي"><i class="fas fa-chart-bar"></i></a>
+        <a href="#contact" title="تواصل"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
 
-
-    </script>
+  <!-- main script -->
+  <script src="script.js" defer></script>
 </body>
 </html>
