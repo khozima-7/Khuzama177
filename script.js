@@ -1,77 +1,72 @@
-// Helpers
-const $ = sel => document.querySelector(sel);
-const $$ = sel => Array.from(document.querySelectorAll(sel));
+// قائمة جانبية متجاوبة + تبديل الوضع الليلي + تحسينات تجربة المستخدم
 
-// set year
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Theme toggle (data-theme on root)
-const themeBtn = document.getElementById('toggleTheme');
-function getTheme(){ return document.documentElement.getAttribute('data-theme') || 'light' }
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme', t);
-  localStorage.setItem('theme', t);
-  themeBtn.setAttribute('aria-pressed', t === 'dark');
-  themeBtn.innerHTML = t === 'dark' ? '<i class="fas fa-sun"></i><span class="visually-hidden">وضع فاتح</span>' : '<i class="fas fa-moon"></i><span class="visually-hidden">وضع داكن</span>';
-}
-themeBtn.addEventListener('click', () => setTheme(getTheme() === 'dark' ? 'light' : 'dark'));
-
-// IntersectionObserver for reveal and progress bars
-const ioOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-const io = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      // animate progress fills inside
-      entry.target.querySelectorAll('.progress-fill').forEach(p => {
-        const val = Number(p.dataset.progress || 0);
-        p.style.width = val + '%';
-      });
-      obs.unobserve(entry.target);
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  // تبديل الوضع الليلي
+  const themeBtn = document.getElementById('toggleTheme');
+  themeBtn?.addEventListener('click', function () {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeBtn.setAttribute('aria-pressed', newTheme === 'dark');
+    themeBtn.querySelector('i').className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
   });
-}, ioOptions);
 
-// observe all .reveal or .card
-$$('.reveal, .card').forEach(el => io.observe(el));
-
-// Contact form: build mailto and open user's mail client
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const message = form.message.value.trim();
-
-  if(!name || !email || !message){
-    alert('الرجاء تعبئة جميع الحقول');
-    return;
+  // قائمة جانبية للجوال
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+      navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', navMenu.classList.contains('open'));
+    });
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function (e) {
+      if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && e.target !== navToggle) {
+        navMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // إغلاق القائمة عند اختيار عنصر
+    navMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
-  // build mailto
-  const to = 'your-email@example.com'; // <-- غيّر إلى إيميلك
-  const subject = encodeURIComponent(`رسالة من ${name} عبر صفحة خُزيمة`);
-  const body = encodeURIComponent(`الاسم: ${name}\nالبريد: ${email}\n\nالرسالة:\n${message}`);
-  const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+  // تمرير ناعم لجميع الروابط الداخلية
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      const targetId = anchor.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
-  // فتح تطبيق البريد
-  window.location.href = mailto;
-});
-
-// small enhancement: reduce motion for users who prefer reduced-motion
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.style.scrollBehavior = 'auto';
-  // Disable progress animation transitions
-  document.querySelectorAll('.progress-fill').forEach(p => p.style.transition = 'none');
-}
-
-// Optional: smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    const target = document.querySelector(a.getAttribute('href'));
-    if(target){
-      e.preventDefault();
-      target.scrollIntoView({behavior:'smooth'});
-    }
+  // تحسينات إضافية: إظهار زر العودة للأعلى عند التمرير
+  let backToTop = document.getElementById('backToTop');
+  if (!backToTop) {
+    backToTop = document.createElement('button');
+    backToTop.id = 'backToTop';
+    backToTop.className = 'btn ghost';
+    backToTop.title = 'العودة للأعلى';
+    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    backToTop.style.position = 'fixed';
+    backToTop.style.bottom = '32px';
+    backToTop.style.left = '32px';
+    backToTop.style.display = 'none';
+    backToTop.style.zIndex = '999';
+    document.body.appendChild(backToTop);
+  }
+  window.addEventListener('scroll', function () {
+    backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
